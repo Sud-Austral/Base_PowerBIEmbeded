@@ -25,6 +25,7 @@ namespace PowerBIEmbedded_AppOwnsData.Controllers
 
         public ActionResult Index()
         {
+            /*
             var result = new IndexConfig();
             var assembly = Assembly.GetExecutingAssembly().GetReferencedAssemblies().Where(n => n.Name.Equals("Microsoft.PowerBI.Api")).FirstOrDefault();
             if (assembly != null)
@@ -32,11 +33,16 @@ namespace PowerBIEmbedded_AppOwnsData.Controllers
                 result.DotNETSDK = assembly.Version.ToString(3);
             }
             return View(result);
+            */
+            return View();
         }
 
-        public async Task<ActionResult> EmbedReport(string username, string roles)
+        //public async Task<ActionResult> EmbedReport(string username, string roles)
+        public async Task<ActionResult> EmbedReport()
         {
-            var embedResult = await m_embedService.EmbedReport(username, roles);
+            //string t1 = username;
+            //string t2 = roles;
+            var embedResult = await m_embedService.EmbedReport(null, null);
             if (embedResult)
             {
                 //m_embedService.EmbedConfig.EmbedUrl = "https://app.powerbi.com/reportEmbed?reportId=8f96cbcd-dcd2-4cc6-9cf5-b4897758069f&autoAuth=true&ctid=8fbaa5bf-2ecc-4dc8-b56b-8f92e307f076&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLXNvdXRoLWNlbnRyYWwtdXMtcmVkaXJlY3QuYW5hbHlzaXMud2luZG93cy5uZXQvIn0%3D";
@@ -74,9 +80,5 @@ namespace PowerBIEmbedded_AppOwnsData.Controllers
             }
         }
 
-        public async Task<ActionResult> Test()
-        {
-            return View();
-        }
     }
 }

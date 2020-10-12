@@ -154,6 +154,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -204,6 +205,9 @@
     <None Include="Project_Readme.html" />
     <Content Include="scripts\powerbi.js.map" />
     <Content Include="Views\Home\Test.cshtml" />
+    <Content Include="Views\Test\EmbedReport.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\PowerBIEmbeddedAppOwnsData20201012114116 - Web Deploy.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

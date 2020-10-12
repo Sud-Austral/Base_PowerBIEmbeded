@@ -20,9 +20,11 @@ namespace PowerBIEmbedded_AppOwnsData.Services
         private static readonly string ResourceUrl = ConfigurationManager.AppSettings["resourceUrl"];
         private static readonly string ApplicationId = ConfigurationManager.AppSettings["applicationId"];
         private static readonly string ApiUrl = ConfigurationManager.AppSettings["apiUrl"];
-        private static readonly string WorkspaceId = ConfigurationManager.AppSettings["workspaceId"];
-        private static readonly string ReportId = ConfigurationManager.AppSettings["reportId"];
-
+        //private static readonly string WorkspaceId = ConfigurationManager.AppSettings["workspaceId"];
+        private static readonly string WorkspaceId = "d3620841-9ad9-4205-ac34-fb481dc875dc";
+        
+        //private static readonly string ReportId = ConfigurationManager.AppSettings["reportId"];
+        private static readonly string ReportId = "8cb117c8-2b8d-43d3-ab2e-47910d74ec66";
         private static readonly string AuthenticationType = ConfigurationManager.AppSettings["AuthenticationType"];
         private static readonly NameValueCollection sectionConfig = ConfigurationManager.GetSection(AuthenticationType) as NameValueCollection;
         private static readonly string ApplicationSecret = sectionConfig["applicationSecret"];

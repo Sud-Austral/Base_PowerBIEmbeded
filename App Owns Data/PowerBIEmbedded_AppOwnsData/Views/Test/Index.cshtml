@@ -1,0 +1,28 @@
+﻿@model PowerBIEmbedded_AppOwnsData.Models.IndexConfig
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="buttonsWrapper">
+    Select an entity to embed.<br /><br />
+    <a id="btnEmbedReport" href="~/Home/EmbedReport">Embed Report</a>
+    <br />
+    <a id="btnEmbedDashboard" href="~/Home/EmbedDashboard">Embed Dashboard</a>
+    <br />
+    <a id="btnEmbedTile" href="~/Home/EmbedTile">Embed Tile</a>
+    <br />
+    <div class="infoBox">
+        <b>Nuget packages which used in this solution</b><br />
+        @*
+        Microsoft.PowerBI.API Version @Model.DotNETSDK<br />
+        *@
+        Microsoft.PowerBI.JavaScript Version 2.6.6<br />
+    </div>
+</div>
+
+<a href="https://powerbiembeddedappownsdata20201012114116.azurewebsites.net/Test/EmbedReport/13101">Santiago</a>
+<a href="https://powerbiembeddedappownsdata20201012114116.azurewebsites.net/Test/EmbedReport/8101">Conce</a>
+<a href="https://powerbiembeddedappownsdata20201012114116.azurewebsites.net/Test/EmbedReport/6101">Rancagua</a>
+<a href="https://powerbiembeddedappownsdata20201012114116.azurewebsites.net/Test/EmbedReport/7101">Talca</a>
+<a href="https://powerbiembeddedappownsdata20201012114116.azurewebsites.net/Test/EmbedReport/5101">Valpo</a>
+

@@ -34,6 +34,8 @@ namespace PowerBIEmbedded_AppOwnsData.Controllers
         {
 
             ViewBag.codcom = id;
+            ViewBag.columna = "Codcom";
+            ViewBag.tabla = "Medio_Ambiente";
             var embedResult = await m_embedService.EmbedReport(null, null);
             if (embedResult)
             {

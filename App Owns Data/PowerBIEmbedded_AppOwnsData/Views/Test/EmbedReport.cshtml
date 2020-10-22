@@ -92,8 +92,10 @@
     const filter = {
         $schema: "http://powerbi.com/product/schema#advanced",
         target: {
-            table: "Medio_Ambiente",
-            column: "Codcom"
+            //table: "Medio_Ambiente",
+            table: "@ViewBag.tabla",
+            //column: "Codcom"
+            column: "@ViewBag.columna"
         },
         operator: "eq",
         values: [@ViewBag.codcom]

@@ -377,7 +377,6 @@ D:\GitHub\Base_PowerBIEmbeded\App Owns Data\PowerBIEmbedded_AppOwnsData\bin\Enti
 D:\GitHub\Base_PowerBIEmbeded\App Owns Data\PowerBIEmbedded_AppOwnsData\bin\Microsoft.AspNet.Identity.Core.xml
 D:\GitHub\Base_PowerBIEmbeded\App Owns Data\PowerBIEmbedded_AppOwnsData\bin\Microsoft.AspNet.Identity.EntityFramework.xml
 D:\GitHub\Base_PowerBIEmbeded\App Owns Data\PowerBIEmbedded_AppOwnsData\bin\Microsoft.Owin.xml
-D:\GitHub\Base_PowerBIEmbeded\App Owns Data\PowerBIEmbedded_AppOwnsData\obj\Debug\PowerBIEmbedded_AppOwnsData.csprojAssemblyReference.cache
 D:\GitHub\Base_PowerBIEmbeded\App Owns Data\PowerBIEmbedded_AppOwnsData\obj\Debug\PowerBIEmbedded_AppOwnsData.csproj.CoreCompileInputs.cache
 D:\GitHub\Base_PowerBIEmbeded\App Owns Data\PowerBIEmbedded_AppOwnsData\obj\Debug\PowerBIEmbedded_AppOwnsData.csproj.CopyComplete
 D:\GitHub\Base_PowerBIEmbeded\App Owns Data\PowerBIEmbedded_AppOwnsData\obj\Debug\PowerBIEmbedded_AppOwnsData.dll

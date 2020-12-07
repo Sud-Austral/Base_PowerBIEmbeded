@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div class="embed-responsive embed-responsive-21by9">
+    <iframe id="Contenido" class="embed-responsive-item" src=""></iframe>
+</div>
+<script>
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+</script>
+<script>
+    var prodId = getParameterByName('Codcom');
+    alert(prodId);
+    //document.getElementById("Contenido").src = "https://powerbiembeddedappownsdata20201012114116.azurewebsites.net/Test/EmbedReport/" + prodId;
+</script>
+
+
+
+
+<script>
+    var prodId = getParameterByName('Codcom');
+    //var html = ' <div class="embed-responsive embed-responsive-21by9">';
+
+    //html = html + '<iframe class="embed-responsive-item" src="https://powerbiembeddedappownsdata20201012114116.azurewebsites.net/Test/EmbedReport/' + prodId + '"></iframe></div>';
+
+    //document.getElementById("Contenido").innerHTML = html;
+    //alert();
+    document.getElementById("Contenido").src = "https://powerbiembeddedappownsdata20201012114116.azurewebsites.net/Test/EmbedReport/" + prodId;
+</script>
+

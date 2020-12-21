@@ -78,10 +78,10 @@
     const filter = {
         $schema: "http://powerbi.com/product/schema#advanced",
         target: {
-            table: "Localiza_HN",
-            //table: "@ViewBag.tabla",
-            column: "Departamento"
-            //column: "@ViewBag.columna"
+            //table: "Localiza_HN",
+            table: "@ViewBag.tabla",
+            //column: "Departamento"
+            column: "@ViewBag.columna"
         },
         operator: "eq",
         values: [valor]

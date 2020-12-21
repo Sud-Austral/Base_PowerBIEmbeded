@@ -1,0 +1,167 @@
+﻿@model PowerBIEmbedded_AppOwnsData.Models.EmbedConfig
+
+@{
+    ViewBag.Title = "Index";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
+}
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="~/Content/style/style.css">
+    <script src="https://npmcdn.com/es6-promise@3.2.1"></script>
+    <script src="~/scripts/powerbi.js"></script>
+
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div id="errorWrapper">
+            <h2>
+                Error
+            </h2>
+            <pre>
+            @Model.ErrorMessage
+        </pre>
+        </div>
+
+        return;
+    }
+    <div id="contenedor" style=""></div>
+
+    <script>
+    // Read embed application token from Model
+    var accessToken = "@Model.EmbedToken.Token";
+
+    // Read embed URL from Model
+    var embedUrl = "@Html.Raw(Model.EmbedUrl)";
+    //var embedUrl = "https://app.powerbi.com/reportEmbed?reportId=4e336a5c-405e-40c7-bd8c-5ce991c59c2d&autoAuth=true&ctid=8fbaa5bf-2ecc-4dc8-b56b-8f92e307f076&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLXNvdXRoLWNlbnRyYWwtdXMtcmVkaXJlY3QuYW5hbHlzaXMud2luZG93cy5uZXQvIn0%3D";
+
+    // Read report Id from Model
+    var embedReportId = "@Model.Id";
+
+    // Get models. models contains enums that can be used.
+    var models = window['powerbi-client'].models;
+
+    // Embed configuration used to describe the what and how to embed.
+    // This object is used when calling powerbi.embed.
+    // This also includes settings and options such as filters.
+    // You can find more information at https://github.com/Microsoft/PowerBI-JavaScript/wiki/Embed-Configuration-Details.
+    /*
+    const filter = {
+        $schema: "http://powerbi.com/product/schema#advanced",
+        target: {
+            table: "Info",
+            column: "years"
+        },
+        operator: "eq",
+        values: [2018]
+    };
+    */
+        //alert("@ViewBag.codcom".replace('&#243;', 'ó'));
+        var valor = "@ViewBag.codcom"
+            .replace('&#193;', 'Á')
+            .replace('&#225;', 'á')
+            .replace('&#201;', 'É')
+            .replace('&#233;', 'e')
+            .replace('&#205;', 'Í')
+            .replace('&#237;', 'í')
+            .replace('&#211;', 'Ó')
+            .replace('&#243;', 'ó')
+            .replace('&#218;', 'Ú')
+            .replace('&#250;', 'ú')
+            .replace('&#209;', 'Ñ')
+            .replace('&#241;', 'ñ');
+        //alert(valor);
+    const filter = {
+        $schema: "http://powerbi.com/product/schema#advanced",
+        target: {
+            table: "Localiza_HN",
+            //table: "@ViewBag.tabla",
+            column: "Departamento"
+            //column: "@ViewBag.columna"
+        },
+        operator: "eq",
+        values: [valor]
+        //values: ["Comayagua"]
+    };
+
+    var config = {
+        type: 'report',
+        tokenType: models.TokenType.Embed,
+        accessToken: accessToken,
+        embedUrl: embedUrl,
+        id: embedReportId,
+        permissions: models.Permissions.All,
+        settings: {
+            //filters: [{ filter:"Info/years eq 2018"}],
+            filter: [filter],
+            filterPaneEnabled: false,
+            navContentPaneEnabled: true
+        }
+    };
+
+    // Get a reference to the embedded report HTML element
+    //var reportContainer = $('#embedContainer')[0];
+    //contenedor
+    var reportContainer = $('#contenedor')[0];
+    if ("@Model.Username" != "") {
+        $("#RLS").prop('checked', true);
+        $("#RLSdiv").show();
+    }
+    else
+    {
+        $("#RLS").prop('checked', false);
+        $("#RLSdiv").hide();
+    }
+
+    if ("@Model.IsEffectiveIdentityRequired.GetValueOrDefault()" == "True") {
+        $("#noRLSdiv").hide();
+        $("#RLS").removeAttr("disabled");
+        $("#RLS").change(function () {
+            if ($(this).is(":checked")) {
+                $("#RLSdiv").show(300);
+            } else {
+                $("#RLSdiv").hide(200);
+            }
+        });
+    }
+    else
+    {
+        $("#noRLSdiv").show();
+    }
+
+    // Embed the report and display it within the div container.
+    var report = powerbi.embed(reportContainer, config);
+
+    report.on('loaded', event => {
+        report.getFilters()
+            .then(filters => {
+                filters.push(filter);
+                return report.setFilters(filters);
+            });
+    });
+
+    document.getElementById("embedContainer").style = "background-color:black;display: block; width: 100%; border: none;";
+
+
+    </script>
+
+    <div id="embedContainer"></div>
+    <style type="text/css">
+        html, body, div, iframe {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        iframe {
+            display: block;
+            width: 100%;
+            border: none;
+        }
+    </style>
+
+</body>

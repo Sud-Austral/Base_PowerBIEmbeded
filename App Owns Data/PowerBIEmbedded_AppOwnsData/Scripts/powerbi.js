@@ -427,7 +427,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	     */
 	    Service.prototype.preload = function (config, element) {
 	        var iframeContent = document.createElement("iframe");
-	        iframeContent.setAttribute("style", "display:none;");
+	        //iframeContent.setAttribute("style", "display:none;");
+            iframeContent.setAttribute("style", "display: block;width: 100%;border: none; ");
 	        iframeContent.setAttribute("src", config.embedUrl);
 	        iframeContent.setAttribute("scrolling", "no");
 	        iframeContent.setAttribute("allowfullscreen", "false");
@@ -796,7 +797,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var iframeContent = document.createElement("iframe");
                 var embedUrl = this.config.embedUrl;
                 //embedUrl = embedUrl + "&filter=Info/years eq 2018";
-	            iframeContent.setAttribute("style", "width:100%;height:100%;");
+	            //iframeContent.setAttribute("style", "width:100%;height:100%;");
+                iframeContent.setAttribute("style", "display: block;width: 100%;border: none;");
 	            iframeContent.setAttribute("src", embedUrl);
 	            iframeContent.setAttribute("scrolling", "no");
 	            iframeContent.setAttribute("allowfullscreen", "true");

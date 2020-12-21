@@ -21,10 +21,10 @@ namespace PowerBIEmbedded_AppOwnsData.Services
         private static readonly string ApplicationId = ConfigurationManager.AppSettings["applicationId"];
         private static readonly string ApiUrl = ConfigurationManager.AppSettings["apiUrl"];
         private static readonly string WorkspaceId = ConfigurationManager.AppSettings["workspaceId"];
-        //private static readonly string WorkspaceId = "d3620841-9ad9-4205-ac34-fb481dc875dc";
+        //private static readonly string WorkspaceId = "f9eafdc6-98a1-4aa9-a525-66b9a2136e0d";
         
         private static readonly string ReportId = ConfigurationManager.AppSettings["reportId"];
-        //private static readonly string ReportId = "8cb117c8-2b8d-43d3-ab2e-47910d74ec66";
+        //private static readonly string ReportId = "90461ecc-1682-492c-af3f-41b2063619b9";
         private static readonly string AuthenticationType = ConfigurationManager.AppSettings["AuthenticationType"];
         private static readonly NameValueCollection sectionConfig = ConfigurationManager.GetSection(AuthenticationType) as NameValueCollection;
         private static readonly string ApplicationSecret = sectionConfig["applicationSecret"];
@@ -71,8 +71,8 @@ namespace PowerBIEmbedded_AppOwnsData.Services
                 {
                     // Get a list of reports.
                     //Aqui setear el group
-                    //var reports = await client.Reports.GetReportsInGroupAsync(WorkspaceId);
-                    var reports = await client.Reports.GetReportsInGroupAsync("f9eafdc6-98a1-4aa9-a525-66b9a2136e0d");
+                    var reports = await client.Reports.GetReportsInGroupAsync(WorkspaceId);
+                    //var reports = await client.Reports.GetReportsInGroupAsync("f9eafdc6-98a1-4aa9-a525-66b9a2136e0d");
                     // No reports retrieved for the given workspace.
                     if (reports.Value.Count() == 0)
                     {
@@ -82,8 +82,8 @@ namespace PowerBIEmbedded_AppOwnsData.Services
 
                     Report report;
                     //Aqui setear el reportID   cec1e575-49cf-4d58-ad59-48929de0c772
-                    //if (string.IsNullOrWhiteSpace(ReportId))
-                    if (string.IsNullOrWhiteSpace("cec1e575-49cf-4d58-ad59-48929de0c772"))
+                    if (string.IsNullOrWhiteSpace(ReportId))
+                    //if (string.IsNullOrWhiteSpace("cec1e575-49cf-4d58-ad59-48929de0c772"))
                     {
                         // Get the first report in the workspace.
                         report = reports.Value.FirstOrDefault();
@@ -164,6 +164,102 @@ namespace PowerBIEmbedded_AppOwnsData.Services
                     // Get a list of reports.
                     //Aqui setear el group
                     var reports = await client.Reports.GetReportsInGroupAsync(WorkspaceId);
+                    //var reports = await client.Reports.GetReportsInGroupAsync("f9eafdc6-98a1-4aa9-a525-66b9a2136e0d");
+                    //var reports = await client.Reports.GetReportsInGroupAsync(idPowerbi);
+
+                    // No reports retrieved for the given workspace.
+                    if (reports.Value.Count() == 0)
+                    {
+                        m_embedConfig.ErrorMessage = "No reports were found in the workspace";
+                        return false;
+                    }
+
+                    Report report;
+                    //Aqui setear el reportID   cec1e575-49cf-4d58-ad59-48929de0c772
+                    //if (string.IsNullOrWhiteSpace(ReportId))
+                    if (string.IsNullOrWhiteSpace("cec1e575-49cf-4d58-ad59-48929de0c772"))
+                    {
+                        // Get the first report in the workspace.
+                        report = reports.Value.FirstOrDefault();
+                    }
+                    else
+                    {
+                        //report = reports.Value.FirstOrDefault(r => r.Id.Equals(ReportId, StringComparison.InvariantCultureIgnoreCase));
+                        report = reports.Value.FirstOrDefault(r => r.Id.Equals(idPowerbi, StringComparison.InvariantCultureIgnoreCase));
+                    }
+
+                    if (report == null)
+                    {
+                        m_embedConfig.ErrorMessage = "No report with the given ID was found in the workspace. Make sure ReportId is valid.";
+                        return false;
+                    }
+
+                    var datasets = await client.Datasets.GetDatasetByIdInGroupAsync(WorkspaceId, report.DatasetId);
+                    m_embedConfig.IsEffectiveIdentityRequired = datasets.IsEffectiveIdentityRequired;
+                    m_embedConfig.IsEffectiveIdentityRolesRequired = datasets.IsEffectiveIdentityRolesRequired;
+                    GenerateTokenRequest generateTokenRequestParameters;
+                    // This is how you create embed token with effective identities
+                    if (!string.IsNullOrWhiteSpace(username))
+                    {
+                        var rls = new EffectiveIdentity(username, new List<string> { report.DatasetId });
+                        if (!string.IsNullOrWhiteSpace(roles))
+                        {
+                            var rolesList = new List<string>();
+                            rolesList.AddRange(roles.Split(','));
+                            rls.Roles = rolesList;
+                        }
+                        // Generate Embed Token with effective identities.
+                        generateTokenRequestParameters = new GenerateTokenRequest(accessLevel: "view", identities: new List<EffectiveIdentity> { rls });
+                    }
+                    else
+                    {
+                        // Generate Embed Token for reports without effective identities.
+                        generateTokenRequestParameters = new GenerateTokenRequest(accessLevel: "view");
+                    }
+
+                    var tokenResponse = await client.Reports.GenerateTokenInGroupAsync(WorkspaceId, report.Id, generateTokenRequestParameters);
+
+                    if (tokenResponse == null)
+                    {
+                        m_embedConfig.ErrorMessage = "Failed to generate embed token.";
+                        return false;
+                    }
+
+                    // Generate Embed Configuration.
+                    m_embedConfig.EmbedToken = tokenResponse;
+                    m_embedConfig.EmbedUrl = report.EmbedUrl;
+                    m_embedConfig.Id = report.Id;
+                }
+            }
+            catch (HttpOperationException exc)
+            {
+                m_embedConfig.ErrorMessage = string.Format("Status: {0} ({1})\r\nResponse: {2}\r\nRequestId: {3}", exc.Response.StatusCode, (int)exc.Response.StatusCode, exc.Response.Content, exc.Response.Headers["RequestId"].FirstOrDefault());
+                return false;
+            }
+
+            return true;
+        }
+
+
+        public async Task<bool> EmbedReport(string username, string roles, string idPowerbi, string idGroup)
+        {
+
+            // Get token credentials for user
+            var getCredentialsResult = await GetTokenCredentials();
+            if (!getCredentialsResult)
+            {
+                // The error message set in GetTokenCredentials
+                return false;
+            }
+
+            try
+            {
+                // Create a Power BI Client object. It will be used to call Power BI APIs.
+                using (var client = new PowerBIClient(new Uri(ApiUrl), m_tokenCredentials))
+                {
+                    // Get a list of reports.
+                    //Aqui setear el group
+                    var reports = await client.Reports.GetReportsInGroupAsync(idGroup);
                     //var reports = await client.Reports.GetReportsInGroupAsync("f9eafdc6-98a1-4aa9-a525-66b9a2136e0d");
                     //var reports = await client.Reports.GetReportsInGroupAsync(idPowerbi);
 

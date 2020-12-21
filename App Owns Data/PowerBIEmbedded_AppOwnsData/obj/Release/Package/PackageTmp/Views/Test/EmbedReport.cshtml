@@ -2,9 +2,13 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
-
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="~/Content/style/style.css">
 <script src="https://npmcdn.com/es6-promise@3.2.1"></script>
 <script src="~/scripts/powerbi.js"></script>
 
@@ -49,9 +53,13 @@
             </div>
         }
     </div>
+    <div id="embedContainer" style="background-color:red;"></div>
 *@
-<div id="embedContainer"></div>
+
+
+<div id="contenedor" style="background-color:red;"></div>
 @*
+    <div id="contenedor"></div>
     <div class="infoBox">
         Code is in files:<br />
         1) HomeController.cs<br />
@@ -90,7 +98,7 @@
         values: [2018]
     };
     */
-    
+
     const filter = {
         $schema: "http://powerbi.com/product/schema#advanced",
         target: {
@@ -102,7 +110,7 @@
         operator: "eq",
         values: [@ViewBag.codcom]
     };
-    
+
     var config = {
         type: 'report',
         tokenType: models.TokenType.Embed,
@@ -119,8 +127,9 @@
     };
 
     // Get a reference to the embedded report HTML element
-    var reportContainer = $('#embedContainer')[0];
-
+    //var reportContainer = $('#embedContainer')[0];
+    //contenedor
+    var reportContainer = $('#contenedor')[0];
     if ("@Model.Username" != "") {
         $("#RLS").prop('checked', true);
         $("#RLSdiv").show();
@@ -159,9 +168,29 @@
                 return report.setFilters(filters);
             });
     });
-
+    //alert(document.getElementById("embedContainer").innerHTML);
+    //alert(document.getElementsByTagName("iframe")[0].src);
+    //document.getElementById("contenedor").innerHTML = '<iframe style="display: block; width: 100 %; border: none; " src="' + document.getElementsByTagName("iframe")[0].src + '" scrolling="no" allowfullscreen="true"></iframe>';
+    document.getElementById("embedContainer").style = "background-color:red;display: block; width: 100%; border: none;";
+    //alert("Hola");
     //document.getElementsByTagName("iframe")[0].src
     //alert(document.getElementsByTagName("iframe")[0].src);
     //alert(report);
     //document.getElementsByTagName("iframe")[0].src = document.getElementsByTagName("iframe")[0].src + "&filter=Info/years eq 2018";
 </script>
+
+<div id="embedContainer"></div>
+<style type="text/css">
+    html, body, div, iframe {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+
+    iframe {
+        display: block;
+        width: 100%;
+        border: none;
+    }
+</style>
+

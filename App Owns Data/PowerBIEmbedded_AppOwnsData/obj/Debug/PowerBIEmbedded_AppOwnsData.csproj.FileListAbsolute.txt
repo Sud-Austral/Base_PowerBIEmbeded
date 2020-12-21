@@ -381,3 +381,4 @@ D:\GitHub\Base_PowerBIEmbeded\App Owns Data\PowerBIEmbedded_AppOwnsData\obj\Debu
 D:\GitHub\Base_PowerBIEmbeded\App Owns Data\PowerBIEmbedded_AppOwnsData\obj\Debug\PowerBIEmbedded_AppOwnsData.csproj.CopyComplete
 D:\GitHub\Base_PowerBIEmbeded\App Owns Data\PowerBIEmbedded_AppOwnsData\obj\Debug\PowerBIEmbedded_AppOwnsData.dll
 D:\GitHub\Base_PowerBIEmbeded\App Owns Data\PowerBIEmbedded_AppOwnsData\obj\Debug\PowerBIEmbedded_AppOwnsData.pdb
+D:\GitHub\Base_PowerBIEmbeded\App Owns Data\PowerBIEmbedded_AppOwnsData\obj\Debug\PowerBIEmbedded_AppOwnsData.csprojAssemblyReference.cache

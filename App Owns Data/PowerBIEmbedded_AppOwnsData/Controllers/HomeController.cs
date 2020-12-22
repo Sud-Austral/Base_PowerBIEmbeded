@@ -42,7 +42,23 @@ namespace PowerBIEmbedded_AppOwnsData.Controllers
         {
             //string t1 = username;
             //string t2 = roles;
-            var embedResult = await m_embedService.EmbedReport(null, null);
+            var embedResult = await m_embedService.EmbedReport(null, null, "c91b25db-feea-4299-a065-329d736254cb", "eef10812-422e-46b2-b828-e6ab4e4a56ff");
+            if (embedResult)
+            {
+                //m_embedService.EmbedConfig.EmbedUrl = "https://app.powerbi.com/reportEmbed?reportId=8f96cbcd-dcd2-4cc6-9cf5-b4897758069f&autoAuth=true&ctid=8fbaa5bf-2ecc-4dc8-b56b-8f92e307f076&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLXNvdXRoLWNlbnRyYWwtdXMtcmVkaXJlY3QuYW5hbHlzaXMud2luZG93cy5uZXQvIn0%3D";
+                return View(m_embedService.EmbedConfig);
+            }
+            else
+            {
+                return View(m_embedService.EmbedConfig);
+            }
+        }
+
+        public async Task<ActionResult> Tester(string id, string id2)
+        {
+            //string t1 = username;
+            //string t2 = roles;
+            var embedResult = await m_embedService.EmbedReport(null, null, id, id2);
             if (embedResult)
             {
                 //m_embedService.EmbedConfig.EmbedUrl = "https://app.powerbi.com/reportEmbed?reportId=8f96cbcd-dcd2-4cc6-9cf5-b4897758069f&autoAuth=true&ctid=8fbaa5bf-2ecc-4dc8-b56b-8f92e307f076&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLXNvdXRoLWNlbnRyYWwtdXMtcmVkaXJlY3QuYW5hbHlzaXMud2luZG93cy5uZXQvIn0%3D";

@@ -18,13 +18,14 @@ namespace PowerBIEmbedded_AppOwnsData.Services
     {
         private static readonly string AuthorityUrl = ConfigurationManager.AppSettings["authorityUrl"];
         private static readonly string ResourceUrl = ConfigurationManager.AppSettings["resourceUrl"];
-        private static readonly string ApplicationId = ConfigurationManager.AppSettings["applicationId"];
+        //private static readonly string ApplicationId = ConfigurationManager.AppSettings["applicationId"];
+        private static readonly string ApplicationId = "e1099a05-6084-49f0-b0d5-6604476cb322";
+
         private static readonly string ApiUrl = ConfigurationManager.AppSettings["apiUrl"];
-        private static readonly string WorkspaceId = ConfigurationManager.AppSettings["workspaceId"];
-        //private static readonly string WorkspaceId = "f9eafdc6-98a1-4aa9-a525-66b9a2136e0d";
-        
-        private static readonly string ReportId = ConfigurationManager.AppSettings["reportId"];
-        //private static readonly string ReportId = "90461ecc-1682-492c-af3f-41b2063619b9";
+        //private static readonly string WorkspaceId = ConfigurationManager.AppSettings["workspaceId"];
+        //private static readonly string ReportId = ConfigurationManager.AppSettings["reportId"];
+        private static readonly string WorkspaceId = "5528de06-a650-4fe7-81fc-022a6f54fb61";
+        private static readonly string ReportId = "9ea04759-91ed-4ebe-98bf-149a0e1b26c3";
         private static readonly string AuthenticationType = ConfigurationManager.AppSettings["AuthenticationType"];
         private static readonly NameValueCollection sectionConfig = ConfigurationManager.GetSection(AuthenticationType) as NameValueCollection;
         private static readonly string ApplicationSecret = sectionConfig["applicationSecret"];

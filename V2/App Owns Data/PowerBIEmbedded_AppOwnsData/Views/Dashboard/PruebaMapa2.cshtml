@@ -2,42 +2,25 @@
 
 @{
     ViewBag.Title = "Index";
-    //Layout = "~/Views/Shared/_Layout.cshtml";
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout =null;
 }
-<head>
-    <meta charset="utf-8">
-</head>
-<body>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
-            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-            crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="~/Content/style/style.css">
-    <script src="https://npmcdn.com/es6-promise@3.2.1"></script>
-    <script src="~/scripts/powerbi.js"></script>
 
-    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
-    {
-        <div id="errorWrapper">
-            <h2>
-                Error
-            </h2>
-            <pre>
-            @Model.ErrorMessage
-        </pre>
-        </div>
+<script src="https://npmcdn.com/es6-promise@3.2.1"></script>
+<script src="~/scripts/powerbi.js"></script>
 
-        return;
-    }
-    <div id="contenedor" style=""></div>
 
-    <script>
+@*<div id="embedContainer"></div>*@
+<div id="contenedor" style="background-color:red;"></div>
+
+
+
+<script>
     // Read embed application token from Model
     var accessToken = "@Model.EmbedToken.Token";
 
     // Read embed URL from Model
     var embedUrl = "@Html.Raw(Model.EmbedUrl)";
-    //var embedUrl = "https://app.powerbi.com/reportEmbed?reportId=4e336a5c-405e-40c7-bd8c-5ce991c59c2d&autoAuth=true&ctid=8fbaa5bf-2ecc-4dc8-b56b-8f92e307f076&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLXNvdXRoLWNlbnRyYWwtdXMtcmVkaXJlY3QuYW5hbHlzaXMud2luZG93cy5uZXQvIn0%3D";
 
     // Read report Id from Model
     var embedReportId = "@Model.Id";
@@ -45,23 +28,7 @@
     // Get models. models contains enums that can be used.
     var models = window['powerbi-client'].models;
 
-    // Embed configuration used to describe the what and how to embed.
-    // This object is used when calling powerbi.embed.
-    // This also includes settings and options such as filters.
-    // You can find more information at https://github.com/Microsoft/PowerBI-JavaScript/wiki/Embed-Configuration-Details.
-    /*
-    const filter = {
-        $schema: "http://powerbi.com/product/schema#advanced",
-        target: {
-            table: "Info",
-            column: "years"
-        },
-        operator: "eq",
-        values: [2018]
-    };
-    */
-        //alert("@ViewBag.codcom".replace('&#243;', 'ó'));
-        var valor = "@ViewBag.codcom"
+    var valor = "@ViewBag.codcom"
             .replace('&#193;', 'Á')
             .replace('&#225;', 'á')
             .replace('&#201;', 'É')
@@ -87,7 +54,11 @@
         values: [valor]
         //values: ["Comayagua"]
     };
-        
+    //alert(filter);
+    // Embed configuration used to describe the what and how to embed.
+    // This object is used when calling powerbi.embed.
+    // This also includes settings and options such as filters.
+    // You can find more information at https://github.com/Microsoft/PowerBI-JavaScript/wiki/Embed-Configuration-Details.
     var config = {
         type: 'report',
         tokenType: models.TokenType.Embed,
@@ -96,7 +67,6 @@
         id: embedReportId,
         permissions: models.Permissions.All,
         settings: {
-            //filters: [{ filter:"Info/years eq 2018"}],
             filter: [filter],
             filterPaneEnabled: false,
             navContentPaneEnabled: true
@@ -104,9 +74,8 @@
     };
 
     // Get a reference to the embedded report HTML element
-    //var reportContainer = $('#embedContainer')[0];
-    //contenedor
     var reportContainer = $('#contenedor')[0];
+
     if ("@Model.Username" != "") {
         $("#RLS").prop('checked', true);
         $("#RLSdiv").show();
@@ -132,6 +101,8 @@
     {
         $("#noRLSdiv").show();
     }
+    // Embed the report and display it within the div container.
+    //var report = powerbi.embed(reportContainer, config);
 
     // Embed the report and display it within the div container.
     var report = powerbi.embed(reportContainer, config);
@@ -143,25 +114,18 @@
                 return report.setFilters(filters);
             });
     });
+</script>
 
-    document.getElementById("embedContainer").style = "background-color:black;display: block; width: 100%; border: none;";
+<style type="text/css">
+    html, body, div, iframe {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
 
-
-    </script>
-
-    <div id="embedContainer"></div>
-    <style type="text/css">
-        html, body, div, iframe {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-        }
-
-        iframe {
-            display: block;
-            width: 100%;
-            border: none;
-        }
-    </style>
-
-</body>
+    iframe {
+        display: block;
+        width: 100%;
+        border: none;
+    }
+</style>

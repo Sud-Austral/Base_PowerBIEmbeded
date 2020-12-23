@@ -207,6 +207,7 @@
     <Content Include="Views\Home\Tester.cshtml" />
     <Content Include="Views\Dashboard\PruebaMapa.cshtml" />
     <Content Include="Views\Dashboard\LiveDemoLink.cshtml" />
+    <Content Include="Views\Dashboard\PruebaMapa2.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

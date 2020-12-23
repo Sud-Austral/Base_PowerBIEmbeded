@@ -41,5 +41,21 @@ namespace PowerBIEmbedded_AppOwnsData.Controllers
                 return View(m_embedService.EmbedConfig);
             }
         }
+
+        public async Task<ActionResult> PruebaMapa2(string id = "Colón")
+        {
+            ViewBag.codcom = id;
+            ViewBag.columna = "Departamento";
+            ViewBag.tabla = "Localiza_HN";
+            var embedResult = await m_embedService.EmbedReport(null, null, "90461ecc-1682-492c-af3f-41b2063619b9", "f9eafdc6-98a1-4aa9-a525-66b9a2136e0d");
+            if (embedResult)
+            {
+                return View(m_embedService.EmbedConfig);
+            }
+            else
+            {
+                return View(m_embedService.EmbedConfig);
+            }
+        }
     }
 }

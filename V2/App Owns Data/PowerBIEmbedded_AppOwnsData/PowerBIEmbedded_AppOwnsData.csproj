@@ -208,6 +208,10 @@
     <Content Include="Views\Dashboard\PruebaMapa.cshtml" />
     <Content Include="Views\Dashboard\LiveDemoLink.cshtml" />
     <Content Include="Views\Dashboard\PruebaMapa2.cshtml" />
+    <None Include="Properties\PublishProfiles\DashboardFiltrado - Web Deploy.pubxml" />
+    <Content Include="Views\Dashboard\PruebaMapaNacional.cshtml" />
+    <Content Include="Views\Dashboard\Pruebalenguistica.cshtml" />
+    <Content Include="Views\Dashboard\PruebaHonduras.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

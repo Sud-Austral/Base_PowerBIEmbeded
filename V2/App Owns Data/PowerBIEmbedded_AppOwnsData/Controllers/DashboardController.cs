@@ -102,10 +102,11 @@ namespace PowerBIEmbedded_AppOwnsData.Controllers
 
         public async Task<ActionResult> PruebaHonduras(string id = "Colón")
         {
+            
             ViewBag.codcom = id;
             ViewBag.columna = "Departamento";
             ViewBag.tabla = "Localiza_HN";
-            var embedResult = await m_embedService.EmbedReport(null, null, "cab9a957-99a6-4e49-826b-fe3506947703", "f4eee1998-74cb-4ddb-885b-3db5a4db255d");
+            var embedResult = await m_embedService.EmbedReport(null, null, "cab9a957-99a6-4e49-826b-fe3506947703", "4eee1998-74cb-4ddb-885b-3db5a4db255d");
             if (embedResult)
             {
                 return View(m_embedService.EmbedConfig);

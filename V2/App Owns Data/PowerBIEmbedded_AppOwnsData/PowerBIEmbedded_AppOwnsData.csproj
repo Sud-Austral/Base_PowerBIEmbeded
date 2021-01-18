@@ -153,11 +153,14 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AutoDashController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BaseDashboard.cs" />
+    <Compile Include="Models\DashboardAux.cs" />
     <Compile Include="Models\EmbedConfig.cs" />
     <Compile Include="Models\IndexConfig.cs" />
     <Compile Include="Models\TileEmbedConfig.cs" />
@@ -167,6 +170,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Image\dataintelligence.png" />
     <Content Include="Content\style\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -212,6 +216,11 @@
     <Content Include="Views\Dashboard\PruebaMapaNacional.cshtml" />
     <Content Include="Views\Dashboard\Pruebalenguistica.cshtml" />
     <Content Include="Views\Dashboard\PruebaHonduras.cshtml" />
+    <Content Include="Views\Dashboard\ComunidadesLin.cshtml" />
+    <Content Include="Views\Dashboard\RankingEducaChile.cshtml" />
+    <Content Include="Views\Dashboard\RankingEducaChileRegional.cshtml" />
+    <Content Include="Views\Dashboard\RankingEducaChileNacional.cshtml" />
+    <Content Include="Views\AutoDash\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

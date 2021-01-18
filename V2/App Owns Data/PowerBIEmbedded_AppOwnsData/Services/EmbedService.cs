@@ -21,8 +21,9 @@ namespace PowerBIEmbedded_AppOwnsData.Services
         //private static readonly string ApplicationId = ConfigurationManager.AppSettings["applicationId"];
         //private static readonly string ApplicationId = "e1099a05-6084-49f0-b0d5-6604476cb322";
         //private static readonly string ApplicationId = "c165a305-038c-413f-a388-688392a04889";
-        private static readonly string ApplicationId = "b7eafb50-d12b-4f7f-95eb-afd81936a286";
-        
+        //private static readonly string ApplicationId = "b7eafb50-d12b-4f7f-95eb-afd81936a286";
+        //ba81d6ab-948f-493e-b95e-d2334140e106
+        private static readonly string ApplicationId = "beeae4a4-9ff4-463c-93ca-d6bf4b1b240e";
         private static readonly string ApiUrl = ConfigurationManager.AppSettings["apiUrl"];
         //private static readonly string WorkspaceId = ConfigurationManager.AppSettings["workspaceId"];
         //private static readonly string ReportId = ConfigurationManager.AppSettings["reportId"];

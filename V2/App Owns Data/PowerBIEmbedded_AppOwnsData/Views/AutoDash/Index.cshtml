@@ -1,0 +1,133 @@
+﻿@model PowerBIEmbedded_AppOwnsData.Models.EmbedConfig
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout =null;
+}
+<style>
+    body {
+        background: url("~/Content/Image/dataintelligence.png") no-repeat center center fixed !important;
+        background-color: black !important;
+        background-size: cover !important;
+        -moz-background-size: cover !important;
+        -webkit-background-size: cover !important;
+        -o-background-size: cover !important;
+    }
+</style>
+<script src="https://npmcdn.com/es6-promise@3.2.1"></script>
+<script src="~/scripts/powerbi.js"></script>
+
+
+@*<div id="embedContainer"></div>*@
+<div id="contenedor" 
+     style='background: url("../../Content/Image/dataintelligence.png") no-repeat center center fixed !important;
+        background-color: black !important;
+        /*background-size: cover !important;
+        -moz-background-size: cover !important;
+        -webkit-background-size: cover !important;
+        -o-background-size: cover !important;   no-repeat  */'></div>
+
+
+
+<script>
+    // Read embed application token from Model
+    var accessToken = "@Model.EmbedToken.Token";
+
+    // Read embed URL from Model
+    var embedUrl = "@Html.Raw(Model.EmbedUrl)";
+
+    // Read report Id from Model
+    var embedReportId = "@Model.Id";
+
+    // Get models. models contains enums that can be used.
+    var models = window['powerbi-client'].models;
+
+        //alert(valor);
+    const filter = {
+        $schema: "http://powerbi.com/product/schema#advanced",
+        target: {
+            //table: "Localiza_HN",
+            table: "@ViewBag.tabla",
+            //column: "Departamento"
+            column: "@ViewBag.columna"
+        },
+        operator: "eq",
+        values: [@ViewBag.codcom]
+        //values: ["Comayagua"]
+    };
+    //alert(filter);
+    // Embed configuration used to describe the what and how to embed.
+    // This object is used when calling powerbi.embed.
+    // This also includes settings and options such as filters.
+    // You can find more information at https://github.com/Microsoft/PowerBI-JavaScript/wiki/Embed-Configuration-Details.
+    var config = {
+        type: 'report',
+        tokenType: models.TokenType.Embed,
+        accessToken: accessToken,
+        embedUrl: embedUrl,
+        id: embedReportId,
+        permissions: models.Permissions.All,
+        settings: {
+            filter: [filter],
+            filterPaneEnabled: false,
+            navContentPaneEnabled: true
+        }
+    };
+
+    // Get a reference to the embedded report HTML element
+    var reportContainer = $('#contenedor')[0];
+
+    if ("@Model.Username" != "") {
+        $("#RLS").prop('checked', true);
+        $("#RLSdiv").show();
+    }
+    else
+    {
+        $("#RLS").prop('checked', false);
+        $("#RLSdiv").hide();
+    }
+
+    if ("@Model.IsEffectiveIdentityRequired.GetValueOrDefault()" == "True") {
+        $("#noRLSdiv").hide();
+        $("#RLS").removeAttr("disabled");
+        $("#RLS").change(function () {
+            if ($(this).is(":checked")) {
+                $("#RLSdiv").show(300);
+            } else {
+                $("#RLSdiv").hide(200);
+            }
+        });
+    }
+    else
+    {
+        $("#noRLSdiv").show();
+    }
+    // Embed the report and display it within the div container.
+    //var report = powerbi.embed(reportContainer, config);
+    print(reportContainer);
+    // Embed the report and display it within the div container.
+    var report = powerbi.embed(reportContainer, config);
+
+    report.on('loaded', event => {
+        report.getFilters()
+            .then(filters => {
+                filters.push(filter);
+                return report.setFilters(filters);
+            });
+    });
+</script>
+
+<style type="text/css">
+    html, body, div, iframe {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+
+    iframe {
+        display: block;
+        width: 100%;
+        border: none;
+    }
+</style>

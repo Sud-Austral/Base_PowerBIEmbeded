@@ -21,15 +21,22 @@ namespace PowerBIEmbedded_AppOwnsData.Services
         //private static readonly string ApplicationId = ConfigurationManager.AppSettings["applicationId"];
         //private static readonly string ApplicationId = "e1099a05-6084-49f0-b0d5-6604476cb322";
         //private static readonly string ApplicationId = "c165a305-038c-413f-a388-688392a04889";
+        //Power
         //private static readonly string ApplicationId = "b7eafb50-d12b-4f7f-95eb-afd81936a286";
+        //Hector
+        private static readonly string ApplicationId = "cb778686-8533-44d7-949c-7bf1603b74b6";
         //ba81d6ab-948f-493e-b95e-d2334140e106
-        private static readonly string ApplicationId = "beeae4a4-9ff4-463c-93ca-d6bf4b1b240e";
+        // private static readonly string ApplicationId = "beeae4a4-9ff4-463c-93ca-d6bf4b1b240e";
+        //Azure 
+        //private static readonly string ApplicationId = "c792f589-2e51-42fe-8677-65df1afc346b";
         private static readonly string ApiUrl = ConfigurationManager.AppSettings["apiUrl"];
         //private static readonly string WorkspaceId = ConfigurationManager.AppSettings["workspaceId"];
         //private static readonly string ReportId = ConfigurationManager.AppSettings["reportId"];
-        private static readonly string WorkspaceId = "5528de06-a650-4fe7-81fc-022a6f54fb61";
-        private static readonly string ReportId = "9ea04759-91ed-4ebe-98bf-149a0e1b26c3";
+        //private static readonly string WorkspaceId = "5528de06-a650-4fe7-81fc-022a6f54fb61";
+        //private static readonly string ReportId = "9ea04759-91ed-4ebe-98bf-149a0e1b26c3";
 
+        private static readonly string WorkspaceId = "60cc62aa-77d2-4b77-b178-beee536e2be1";
+        private static readonly string ReportId = "49fec21e-5ac3-4b64-b235-94dcc17f033b";
         private static readonly string AuthenticationType = ConfigurationManager.AppSettings["AuthenticationType"];
         private static readonly NameValueCollection sectionConfig = ConfigurationManager.GetSection(AuthenticationType) as NameValueCollection;
         private static readonly string ApplicationSecret = sectionConfig["applicationSecret"];

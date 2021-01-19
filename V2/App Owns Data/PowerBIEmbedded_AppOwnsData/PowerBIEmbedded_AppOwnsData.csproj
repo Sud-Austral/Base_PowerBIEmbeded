@@ -221,6 +221,8 @@
     <Content Include="Views\Dashboard\RankingEducaChileRegional.cshtml" />
     <Content Include="Views\Dashboard\RankingEducaChileNacional.cshtml" />
     <Content Include="Views\AutoDash\Index.cshtml" />
+    <Content Include="Views\AutoDash\Hack.cshtml" />
+    <Content Include="Views\AutoDash\Index2.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

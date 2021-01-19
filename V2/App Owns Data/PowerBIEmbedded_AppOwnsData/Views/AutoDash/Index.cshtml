@@ -33,16 +33,13 @@
 <script>
     // Read embed application token from Model
     var accessToken = "@Model.EmbedToken.Token";
-
     // Read embed URL from Model
     var embedUrl = "@Html.Raw(Model.EmbedUrl)";
-
     // Read report Id from Model
     var embedReportId = "@Model.Id";
-
+    //alert(embedReportId);
     // Get models. models contains enums that can be used.
     var models = window['powerbi-client'].models;
-
         //alert(valor);
     const filter = {
         $schema: "http://powerbi.com/product/schema#advanced",
@@ -105,10 +102,10 @@
     }
     // Embed the report and display it within the div container.
     //var report = powerbi.embed(reportContainer, config);
-    print(reportContainer);
+    //print(reportContainer);
     // Embed the report and display it within the div container.
     var report = powerbi.embed(reportContainer, config);
-
+    
     report.on('loaded', event => {
         report.getFilters()
             .then(filters => {

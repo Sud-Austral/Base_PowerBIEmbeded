@@ -37,5 +37,31 @@ namespace PowerBIEmbedded_AppOwnsData.Controllers
                 return View(m_embedService.EmbedConfig);
             }
         }
+
+        public ActionResult Hack()
+        {
+            
+            return View();
+        }
+
+        public async Task<ActionResult> Index2(int id = 3, int id2 = 3)
+        {
+            BaseDashboard db = new BaseDashboard();
+            DashboardAux d = db.dashboards.Where(x => x.id == id).First();
+            ViewBag.codcom = id2;
+            ViewBag.columna = d.columna;
+            ViewBag.tabla = d.tabla;
+            var embedResult = await m_embedService.EmbedReport(null, null, d.reportID, d.groupID);
+            if (embedResult)
+            {
+                return View(m_embedService.EmbedConfig);
+            }
+            else
+            {
+                return View(m_embedService.EmbedConfig);
+            }
+        }
+
+
     }
 }

@@ -163,6 +163,7 @@
     <Compile Include="Models\DashboardAux.cs" />
     <Compile Include="Models\EmbedConfig.cs" />
     <Compile Include="Models\IndexConfig.cs" />
+    <Compile Include="Models\PowerBiDash.cs" />
     <Compile Include="Models\TileEmbedConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EmbedService.cs" />
@@ -220,9 +221,11 @@
     <Content Include="Views\Dashboard\RankingEducaChile.cshtml" />
     <Content Include="Views\Dashboard\RankingEducaChileRegional.cshtml" />
     <Content Include="Views\Dashboard\RankingEducaChileNacional.cshtml" />
-    <Content Include="Views\AutoDash\Index.cshtml" />
+    <Content Include="Views\AutoDash\IndexDeprecated.cshtml" />
     <Content Include="Views\AutoDash\Hack.cshtml" />
     <Content Include="Views\AutoDash\Index2.cshtml" />
+    <Content Include="Views\AutoDash\Index.cshtml" />
+    <Content Include="Views\AutoDash\Error.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

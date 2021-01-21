@@ -20,7 +20,8 @@ namespace PowerBIEmbedded_AppOwnsData.Controllers
         }
 
         // GET: AutoDash
-        public async Task<ActionResult> Index(int id = 1, int id2 = 1)
+        /*
+        public async Task<ActionResult> IndexDeprecated(int id = 1, int id2 = 1)
         {
             BaseDashboard db = new BaseDashboard();
             DashboardAux d = db.dashboards.Where(x => x.id == id).First();
@@ -37,13 +38,13 @@ namespace PowerBIEmbedded_AppOwnsData.Controllers
                 return View(m_embedService.EmbedConfig);
             }
         }
-
+        */
         public ActionResult Hack()
         {
             
             return View();
         }
-
+        /*
         public async Task<ActionResult> Index2(int id = 3, int id2 = 3)
         {
             BaseDashboard db = new BaseDashboard();
@@ -60,6 +61,26 @@ namespace PowerBIEmbedded_AppOwnsData.Controllers
             {
                 return View(m_embedService.EmbedConfig);
             }
+        }
+        */
+        public async Task<ActionResult> Index(int id = 1, int id2 = 1)
+        {
+            BaseDashboard db = new BaseDashboard();
+            PowerBiDash d = db.buscarDashboard(id, id2);
+            if(d == null)
+            {
+                ViewBag.Mensaje = "Sin dashboard encontrado";
+                return View("Error");
+            }
+            ViewBag.url = d.url;
+            ViewBag.titulo = d.titulo;
+            //ViewBag.tabla = d.tabla;
+            return View();
+        }
+
+        public ActionResult Error()
+        {
+            return View();
         }
 
 

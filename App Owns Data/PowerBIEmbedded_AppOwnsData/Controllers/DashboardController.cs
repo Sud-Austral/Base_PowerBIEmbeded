@@ -526,5 +526,19 @@ namespace PowerBIEmbedded_AppOwnsData.Controllers
                 return View(m_embedService.EmbedConfig);
             }
         }
+
+        public async Task<ActionResult> MapaPrueba2()
+        {
+            //var embedResult = await m_embedService.EmbedReport(null, null, "77f365eb-0cbf-4c0b-8bf9-66d87b47ab60", "f9eafdc6-98a1-4aa9-a525-66b9a2136e0d");
+            var embedResult = await m_embedService.EmbedReport(null, null, "90461ecc-1682-492c-af3f-41b2063619b9", "f9eafdc6-98a1-4aa9-a525-66b9a2136e0d");
+            if (embedResult)
+            {
+                return View(m_embedService.EmbedConfig);
+            }
+            else
+            {
+                return View(m_embedService.EmbedConfig);
+            }
+        }
     }
 }

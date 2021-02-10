@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 
 namespace PowerBIEmbedded_AppOwnsData.Models
@@ -13,6 +15,23 @@ namespace PowerBIEmbedded_AppOwnsData.Models
         public BaseDashboard()
         {
             dashboards = new List<PowerBiDash>();
+
+            string url = "https://github.com/Sud-Austral/documentos/raw/master/Ian/VINCULOS_PBI.csv";
+
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+            HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
+            var reader = new StreamReader(resp.GetResponseStream());
+            while (!reader.EndOfStream)
+            {
+                //salida = salida + reader.ReadLine();
+                var line = reader.ReadLine();
+                var values = line.Split(',');
+                dashboards.Add(new PowerBiDash(values[4], values[0], values[1], values[2], values[3]));
+                
+            }
+            salida.RemoveAt(0);
+
+            /*
             dashboards.Add(new PowerBiDash(titulo: "Nombre", id:999, id2:1, url: "https://app.powerbi.com/view?r=eyJrIjoiN2RiNDAxYWQtZjIyZi00ZmQ5LWE0M2UtOTBkMGQ3NWEyNGM5IiwidCI6IjhmYmFhNWJmLTJlY2MtNGRjOC1iNTZiLThmOTJlMzA3ZjA3NiIsImMiOjR9&pageName=ReportSectiond3ed353228b160739c25",comentario:"Prueba"));
 
             dashboards.Add(new PowerBiDash(titulo: "Instrumentos de Planificación Territorial (IPT) - Chile", id: 1, id2: 0, url: "https://app.powerbi.com/view?r=eyJrIjoiN2RiNDAxYWQtZjIyZi00ZmQ5LWE0M2UtOTBkMGQ3NWEyNGM5IiwidCI6IjhmYmFhNWJmLTJlY2MtNGRjOC1iNTZiLThmOTJlMzA3ZjA3NiIsImMiOjR9&pageName=ReportSectiond3ed353228b160739c25", comentario: "DATA: DATATERRITORIO || País: Chile || Variante: NO || Tipo Variante: Nacional || Variante Shopify: Nacional"));
@@ -822,7 +841,7 @@ namespace PowerBIEmbedded_AppOwnsData.Models
             dashboards.Add(new PowerBiDash(titulo: "Sistema de Indicadores de Evaluación de Vida Urbana (SIEDU)", id: 68, id2: 0, url: "Región", comentario: "DATA: DATAVIVIENDA || País: Chile || Variante: SI || Tipo Variante: Región || Variante Shopify: Región"));
             dashboards.Add(new PowerBiDash(titulo: "Sistema de Indicadores de Evaluación de Vida Urbana (SIEDU)", id: 68, id2: 0, url: "Región", comentario: "DATA: DATAVIVIENDA || País: Chile || Variante: SI || Tipo Variante: Región || Variante Shopify: Región"));
             dashboards.Add(new PowerBiDash(titulo: "Sistema de Indicadores de Evaluación de Vida Urbana (SIEDU)", id: 68, id2: 0, url: "Región", comentario: "DATA: DATAVIVIENDA || País: Chile || Variante: SI || Tipo Variante: Región || Variante Shopify: Región"));
-
+            */
         }
 
 

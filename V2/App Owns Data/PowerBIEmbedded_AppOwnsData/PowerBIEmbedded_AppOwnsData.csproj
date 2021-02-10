@@ -156,6 +156,8 @@
     <Compile Include="Controllers\AutoDashController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LectorExcelController.cs" />
+    <Compile Include="Controllers\Lectura.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -229,6 +231,7 @@
     <Content Include="Views\AutoDash\Index.cshtml" />
     <Content Include="Views\AutoDash\Error.cshtml" />
     <None Include="Properties\PublishProfiles\DashboardFiltrado - Web Deploy1.pubxml" />
+    <Content Include="Views\LectorExcel\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

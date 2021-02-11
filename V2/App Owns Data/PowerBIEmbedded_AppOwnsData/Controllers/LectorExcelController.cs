@@ -37,7 +37,22 @@ namespace PowerBIEmbedded_AppOwnsData.Controllers
             ViewBag.resultado = salida;
             return View();
         }
-
+        /*
+        public int ParseNumero(string id="1")
+        {
+            string input = id;
+            try
+            {
+                int result = Int32.Parse(input);
+                return result;
+            }
+            catch (FormatException)
+            {
+                return 2;
+            }
+            //return 1;
+        }
+        */
         private string GetDebuggerDisplay()
         {
             return ToString();

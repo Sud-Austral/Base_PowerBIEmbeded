@@ -26,11 +26,29 @@ namespace PowerBIEmbedded_AppOwnsData.Models
                 //salida = salida + reader.ReadLine();
                 var line = reader.ReadLine();
                 var values = line.Split(',');
-                dashboards.Add(new PowerBiDash(values[4], values[0], values[1], values[2], values[3]));
+                int result;
+                int result2;
+
+                string input = values[0];
+                string input2 = values[1];
+                
+                try
+                {
+                    result = Int32.Parse(input);
+                    result2 = Int32.Parse(input2);
+                    //return result;
+                }
+                catch (FormatException)
+                {
+                    result = 0;
+                    result2 = 0;
+                }
+
+                dashboards.Add(new PowerBiDash(values[4], result, result2, values[2], values[3]));
                 
             }
-            salida.RemoveAt(0);
-
+            //salida.RemoveAt(0);
+            
             /*
             dashboards.Add(new PowerBiDash(titulo: "Nombre", id:999, id2:1, url: "https://app.powerbi.com/view?r=eyJrIjoiN2RiNDAxYWQtZjIyZi00ZmQ5LWE0M2UtOTBkMGQ3NWEyNGM5IiwidCI6IjhmYmFhNWJmLTJlY2MtNGRjOC1iNTZiLThmOTJlMzA3ZjA3NiIsImMiOjR9&pageName=ReportSectiond3ed353228b160739c25",comentario:"Prueba"));
 

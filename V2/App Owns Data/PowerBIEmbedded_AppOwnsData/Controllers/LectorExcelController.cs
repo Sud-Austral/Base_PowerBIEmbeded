@@ -1,4 +1,5 @@
 ﻿using Login.Controllers;
+using PowerBIEmbedded_AppOwnsData.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -35,6 +36,13 @@ namespace PowerBIEmbedded_AppOwnsData.Controllers
             }
             salida.RemoveAt(0);
             ViewBag.resultado = salida;
+            return View();
+        }
+
+        public ActionResult Index2()
+        {
+            BaseDashboard db = new BaseDashboard();
+            ViewBag.resultado = db.dashboards;
             return View();
         }
         /*

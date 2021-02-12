@@ -232,6 +232,7 @@
     <Content Include="Views\AutoDash\Error.cshtml" />
     <None Include="Properties\PublishProfiles\DashboardFiltrado - Web Deploy1.pubxml" />
     <Content Include="Views\LectorExcel\Index.cshtml" />
+    <Content Include="Views\LectorExcel\Index2.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

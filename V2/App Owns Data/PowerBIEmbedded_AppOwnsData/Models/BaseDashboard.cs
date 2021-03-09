@@ -795,7 +795,7 @@ namespace PowerBIEmbedded_AppOwnsData.Models
             dashboards.Add(new PowerBiDash(titulo: "Registro de Empresas - Chile", id: 65, id2: 15, url: "https://app.powerbi.com/view?r=eyJrIjoiMmUyNzNlY2ItNGViZS00MjkwLWI4MGQtZGZkZjliNDNmMGE4IiwidCI6IjhmYmFhNWJmLTJlY2MtNGRjOC1iNTZiLThmOTJlMzA3ZjA3NiIsImMiOjR9", comentario: "DATA: DATAEMPRESA || País: Chile || Variante: SI || Tipo Variante: Región || Variante Shopify: Región de Arica y Parinacota"));
             dashboards.Add(new PowerBiDash(titulo: "Registro de Empresas - Chile", id: 65, id2: 16, url: "https://app.powerbi.com/view?r=eyJrIjoiNGE1YjIxMjktMzQ5OS00YWEwLTg0YzktZWEwYzExOGIxYzQ4IiwidCI6IjhmYmFhNWJmLTJlY2MtNGRjOC1iNTZiLThmOTJlMzA3ZjA3NiIsImMiOjR9", comentario: "DATA: DATAEMPRESA || País: Chile || Variante: SI || Tipo Variante: Región || Variante Shopify: Región del Ñuble"));
             dashboards.Add(new PowerBiDash(titulo: "Sistema de Indicadores de Evaluación de Vida Urbana (SIEDU)", id: 68, id2: 0, url: "Región", comentario: "DATA: DATAVIVIENDA || País: Chile || Variante: SI || Tipo Variante: Región || Variante Shopify: Región"));
-
+            dashboards.Add(new PowerBiDash(titulo: "Mapa de Femicidios", id: 69, id2: 0, url: "https://app.powerbi.com/view?r=eyJrIjoiMWEzZmNjNzYtYWZiMC00NmEyLWFmNTItMmUxY2U4M2FiNmUwIiwidCI6IjhmYmFhNWJmLTJlY2MtNGRjOC1iNTZiLThmOTJlMzA3ZjA3NiIsImMiOjR9", comentario: "Femicidios"));
         }
 
 

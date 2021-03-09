@@ -213,7 +213,6 @@
     <Content Include="Views\Dashboard\PruebaMapa.cshtml" />
     <Content Include="Views\Dashboard\LiveDemoLink.cshtml" />
     <Content Include="Views\Dashboard\PruebaMapa2.cshtml" />
-    <None Include="Properties\PublishProfiles\DashboardFiltrado - Web Deploy.pubxml" />
     <Content Include="Views\Dashboard\PruebaMapaNacional.cshtml" />
     <Content Include="Views\Dashboard\Pruebalenguistica.cshtml" />
     <Content Include="Views\Dashboard\PruebaHonduras.cshtml" />
@@ -226,6 +225,9 @@
     <Content Include="Views\AutoDash\Index2.cshtml" />
     <Content Include="Views\AutoDash\Index.cshtml" />
     <Content Include="Views\AutoDash\Error.cshtml" />
+    <None Include="Properties\PublishProfiles\DashboardFiltrado - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\DashboardFiltrado - ReadOnly - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\DashboardFiltrado - Web Deploy.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
